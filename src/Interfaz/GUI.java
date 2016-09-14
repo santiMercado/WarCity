@@ -1,9 +1,13 @@
 package Interfaz;
 
+import Modulos.Jugador;
+import Modulos.Tanque;
+
+import java.awt.event.KeyListener;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
-
+import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,11 +21,13 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class GUI extends JFrame {
+public class GUI extends JFrame implements KeyListener {
 
 	/**
 	 * Launch the application.
 	 */
+	private Tanque player1;
+	private JLabel tanque;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -40,16 +46,21 @@ public class GUI extends JFrame {
 	 */
 	public GUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		setBounds(100, 100, 820, 650);
 		JPanel panelGeneral = new JPanel();
 		panelGeneral.setBounds(100, 100, 800, 600);
 		panelGeneral.setBackground(new Color(0,0,0));
 		getContentPane().add(panelGeneral);
 		panelGeneral.setLayout(null);
 		JLabel[] arr= new JLabel[300];
-		
+		player1 = new Jugador();
+		tanque = new JLabel();
+		tanque.setBounds(0, 0, 40, 40);
+		tanque.setVisible(true);
+		tanque.setIcon(new ImageIcon(GUI.class.getResource("/Graficos/tanque.png")));
+		panelGeneral.add(tanque);
 	    BufferedReader lector = null;
-	//	JLabel lblNewLabel = new JLabel("");
+	    addKeyListener(this);
 		
 		
 	    try {
@@ -126,7 +137,40 @@ public class GUI extends JFrame {
 	    catch(IOException e) {
 			System.out.println("IO Exception");
 		}
+	    
+	}
+	
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int keyCode = e.getKeyCode();
+	    switch( keyCode ) { 
+	        case KeyEvent.VK_UP:
+	            tanque.setBounds(tanque.getX(), tanque.getY()-10, 40, 40);//k.moverArriba();// handle up 
+	            break;
+	        case KeyEvent.VK_DOWN:
+	        	tanque.setBounds(tanque.getX()	, tanque.getY()+10, 40, 40);
+	            //k.moverAbajo();// handle down
+	            break;
+	        case KeyEvent.VK_LEFT:
+	        	tanque.setBounds(tanque.getX()-10, tanque.getY(), 40, 40);
+	            //k.moverIzq();// handle left
+	            break;
+	        case KeyEvent.VK_RIGHT :
+	        	tanque.setBounds(tanque.getX()+10, tanque.getY(), 40, 40);
+	            //k.moverDer();// handle right
+	            break;
+	    }
+		System.out.println("keyTyped");
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		
 	}
 }
-
-
