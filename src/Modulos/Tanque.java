@@ -3,21 +3,28 @@ package Modulos;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
-public abstract class Tanque {
-	protected int posX;
-	protected int posY;
-	protected JLabel foto;
+public abstract class Tanque extends GameObject{
+	protected int direccion;
+	protected int velocidadm;
+	protected int velocidadd;
+	
+	public Tanque(int x, int y){
+		super(x,y);
+	}
+	
 	public void moverDer() {
-		posX = posX + 10;
+		
+		x = x + 10;
 	}
 	public void moverIzq() {
-		posX = posX - 10;
+		x = x - 10;
 	}
 	public void moverAbajo() {
-		posY = posY + 10;
+		y = y + 10;
 	}
 	public void moverArriba() {
-		posY = posY - 10;
+		y = y - 10;
 	}
+	
 	
 }
