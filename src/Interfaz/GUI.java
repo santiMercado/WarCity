@@ -70,7 +70,7 @@ public class GUI extends JFrame implements KeyListener {
 		JLabel[] arr= new JLabel[300];
 		tanque=new JLabel();
 		game= new Juego();
-
+ 
 		tanque.setBounds(game.getJugador().obtenerX(),game.getJugador().obtenerY(), 40, 40);
 		tanque.setVisible(true);
 		tanque.setIcon(new ImageIcon(GUI.class.getResource("/Graficos/tanque.png")));

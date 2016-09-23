@@ -1,7 +1,5 @@
 package Modulos;
 
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
 
 public abstract class Tanque extends GameObject{
 	protected int direccion;
