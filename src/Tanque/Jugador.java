@@ -50,33 +50,22 @@ public class Jugador extends Tanque{
 
 	@Override
 	public void disparar() {
-		
-        if(direccion==0){
-        	Disparo d = new DisparoJugador(x-10,y+15,game);
-    		game.agregarDisparo(d);
-    		d.iniciarDisparo();
-		
-		}
-        
-		if(direccion==1){
-			Disparo d = new DisparoJugador(x+50,y+15,game);
-    		game.agregarDisparo(d);
-    		d.iniciarDisparo();
-			
-		}
-		if(direccion==2){
-			Disparo d = new DisparoJugador(x+15,y+40,game);
-    		game.agregarDisparo(d);
-    		d.iniciarDisparo();
-			
-		}
-		if(direccion==3){
-			Disparo d = new DisparoJugador(x+15,y+10,game);
-    		game.agregarDisparo(d);
-    		d.iniciarDisparo();
-		}
-		
+		// TODO Auto-generated method stub
+	int xx=x;
+	int yy=y;
+	
+	if(direccion==0){xx=xx-10; yy=yy+14;}
+	if(direccion==1){xx=xx+40; yy=yy+15;}
+	if(direccion==2){xx=xx+16; yy=yy+40;}
+	if(direccion==3) {xx=xx+15; yy=yy-10;}
+	
+	System.out.println(direccion);
+	Shot s=new ShotJugador(xx,yy,game);
+	game.agregarDisparo(s);
+	s.iniciarDisparo();
 	}
+
+	
 
 
 

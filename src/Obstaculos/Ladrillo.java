@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 import Interfaz.GUI;
 import Logica.Juego;
 import Modulos.ElementoGrafico;
-import Tanque.Disparo;
+
 
 public class Ladrillo extends Obstaculo {
   

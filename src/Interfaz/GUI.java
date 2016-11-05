@@ -7,12 +7,10 @@ import Obstaculos.Acero;
 import Obstaculos.Agua;
 import Obstaculos.Aguila;
 import Obstaculos.Ladrillo;
-import Obstaculos.LugarVacio;
 import Obstaculos.Selva;
-import Tanque.Disparo;
-import Tanque.DisparoJugador;
 import Tanque.Enemigo;
 import Tanque.Jugador;
+import Tanque.Shot;
 import Tanque.Tanque;
 import Tanque.TanqueBasico;
 
@@ -28,6 +26,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.colorchooser.*;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+
 
 
 
@@ -117,7 +116,6 @@ public class GUI extends JFrame implements KeyListener {
 				for (int j = 0; j<linea.length(); j++) {
 					y = i*40;
 					if (linea.charAt(j) == '0'){	
-						game.agregarObstaculo(new LugarVacio(x,y,game));
 
 						x=x+40;
 
@@ -212,12 +210,10 @@ public class GUI extends JFrame implements KeyListener {
 		}   
 		case KeyEvent.VK_F:
 		{
-			//tanque.setIcon(new ImageIcon(GUI.class.getResource("/Graficos/tjugadorRIGHT.png")));
-			//DisparoJugador d = new DisparoJugador(game.getJugador().obtenerX(),game.getJugador().obtenerY(),game.getJugador(),game);
-			//tanque.setBounds(game.getJugador().obtenerX(), game.getJugador().obtenerY(), 40, 40);
-			//k.moverDer();// handle right
-			this.game.getJugador().disparar();
-			break;
+			
+		    
+		    game.getJugador().disparar();
+			
 		}   
 
 		}
@@ -237,4 +233,6 @@ public class GUI extends JFrame implements KeyListener {
 	public void añadirAPanel(JLabel j){
 		panelGeneral.add(j);
 	}
+	
+	public JPanel getPanelGeneral(){return panelGeneral;}
 }

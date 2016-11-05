@@ -58,9 +58,14 @@ public abstract class Tanque extends GameObject{
 
 	abstract public void disparar();
 
+    public int getVelocidadD(){return n.getVelocidadd();}
 
-
-
+    public int getVelocidadM(){return n.getVelocidadm();}
+    
+    public int getResistencia(){return n.getResistencia();}
+    
+    public int getDisparosS(){return n.getdispSimultaneos();}
+    
 
 
 }

@@ -3,7 +3,7 @@ import java.awt.Rectangle;
 
 import Logica.Juego;
 import Modulos.*;
-import Tanque.Disparo;
+
 
 public class Obstaculo extends GameObject {
  

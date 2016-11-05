@@ -4,10 +4,9 @@ import Interfaz.GUI;
 import Modulos.IA;
 import Modulos.Mapa;
 import Obstaculos.Obstaculo;
-import Tanque.Disparo;
-import Tanque.DisparoJugador;
 import Tanque.Enemigo;
 import Tanque.Jugador;
+import Tanque.Shot;
 import Tanque.Tanque;
 import Tanque.TanqueBasico;
 import Tanque.TanqueBlindado;
@@ -135,17 +134,12 @@ public class Juego {
        return map.moverTanque(t,dir);
    }
    
-  /* public boolean dañarMapaPJ(int dx,int dy){
-	   return map.dañarObjetoPJ(dx,dy);
-   }*/
-   
-   
-   public void agregarDisparo(Disparo d){
+   public void agregarDisparo(Shot s){
+	   interfaz.añadirAPanel(s.obtenerGrafico().getJLabel());
+	   interfaz.getPanelGeneral().setComponentZOrder(s.obtenerGrafico().getJLabel(),0);
+	   repaint();
 	   
-	   interfaz.añadirAPanel(d.obtenerGrafico().getJLabel());
-	   interfaz.setComponentZOrder(d.obtenerGrafico().getJLabel(), 0);
    }
-   
    
    public void agregarObstaculo(Obstaculo o){
 	   map.agregarObstaculo(o);

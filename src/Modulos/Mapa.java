@@ -4,10 +4,9 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import Obstaculos.Obstaculo;
-import Tanque.Disparo;
-import Tanque.DisparoJugador;
 import Tanque.Enemigo;
 import Tanque.Jugador;
+import Tanque.Shot;
 import Tanque.Tanque;
 
 
@@ -106,6 +105,39 @@ public class Mapa {
 
 		return aux;
 	}
+	
+	public boolean chocaDisparo(Shot d){
+		Rectangle r=new Rectangle();
+		boolean aux=false;
+		int xx=d.obtenerX();
+		int yy=d.obtenerY();
+		
+		if(d.getDir()==0){r.setBounds(xx+d.getVelocidad(),yy,9,9);}
+		if(d.getDir()==1){r.setBounds(xx+d.getVelocidad(),yy,9,9);}
+		if(d.getDir()==2){r.setBounds(xx,yy+d.getVelocidad(),9,9);}
+		if(d.getDir()==3){r.setBounds(xx,yy-d.getVelocidad(),9,9);}
+		
+		if(player.getRectangle().intersects(r)) {
+			if(d.afectar(player))
+				aux=true;
+		}
+		
+		for(int i=0;i<obstaculos.size();i++){
+			if(obstaculos.get(i).getRectangle().intersects(r)){
+				if(d.afectar(obstaculos.get(i)))
+				 aux=true;
+		  }
+		}
+		
+		for(int i=0;i<enemigos.size();i++){
+			if(enemigos.get(i).getRectangle().intersects(r)){
+				if(d.afectar(enemigos.get(i)))
+			     aux=true;
+		   }
+		}
+		
+		return aux;
+	}
 
 	public void agregarEnemigo(Enemigo e){
 		enemigos.add(e);
@@ -139,36 +171,7 @@ public class Mapa {
 		return obstaculos;
 	}
 
-	public void chocaDisparo(Disparo d){
-        
-		
-		Rectangle r=new Rectangle(d.obtenerX(),d.obtenerY(),9,9);
-
-		if(player.getRectangle().intersects(r)){
-			System.out.println("intersecte con jugador");
-			d.afectar(player);
-			
-		}
-
-		for(int i=0;i<enemigos.size();i++){
-			if(enemigos.get(i).getRectangle().intersects(r)){
-				System.out.println("intersecte con enemigo");
-				d.afectar(enemigos.get(i));
-				
-			}
-		}
-
-		for(int j=0;j<obstaculos.size();j++){
-			if(obstaculos.get(j).getRectangle().intersects(r)||r.intersects(obstaculos.get(j).getRectangle())) {   
-				System.out.println("intersecte con obstaculo");
-				d.afectar(obstaculos.get(j));
-				
-			}
-		}
-
-	}
 }
-
 
 
 
