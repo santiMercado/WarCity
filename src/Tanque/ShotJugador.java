@@ -12,7 +12,7 @@ public class ShotJugador extends Shot {
 	 public boolean afectar(Jugador j){return false;}
 	
 	 public boolean afectar(Enemigo e){
-		 return e.recibirDisparo();
+		 return e.recibirDisparo(this);
 		 
 	 }
 	

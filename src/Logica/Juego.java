@@ -4,6 +4,7 @@ import Interfaz.GUI;
 import Modulos.IA;
 import Modulos.Mapa;
 import Obstaculos.Obstaculo;
+import Obstaculos.PowerUp;
 import Tanque.Enemigo;
 import Tanque.Jugador;
 import Tanque.Shot;
@@ -22,11 +23,12 @@ public class Juego {
   protected Enemigo[] E;
   protected int cant;
   protected GUI interfaz;
-  
+  protected int vidasJugador;
  
   
   public Juego(GUI interf){
 	 puntaje=0;
+	 vidasJugador=4;
 	 Player= new Jugador(320,560,this);
 	 map= new Mapa(Player);
 	 E= (Enemigo[]) new Enemigo[4];
@@ -42,8 +44,25 @@ public class Juego {
   
   public Jugador getJugador(){ return Player;}
   
+  public void restarVida(){
+	  vidasJugador--;
+	  /*
+	   * if(vidasJugador==0) {
+	   * GameOver();
+	   * }
+	   */
+  }
+  
+  public void sumarVida(){
+	  if(vidasJugador<4) vidasJugador++;
+  }
+  
   public Enemigo crearEnemigo()	{//El chequeo del arreglo lo hago en la GUI
+	 
+	  
 	  Enemigo t=null;
+	  
+	if(map.getEnemigos().size()<4){  
 	  Random  rnd = new Random();
 	  IA Intelig;
 	  int n =rnd.nextInt(4);
@@ -54,29 +73,34 @@ public class Juego {
 					map.agregarEnemigo(t);
 					interfaz.añadirAPanel(t.obtenerGrafico().getJLabel());
 					Intelig= new IA(t,this);
+					t.setIA(Intelig);
+					
 					break;
 				case 1:
 					t= new TanqueRapido(19*40,14*40,this);//1 200
 					map.agregarEnemigo(t);
 					interfaz.añadirAPanel(t.obtenerGrafico().getJLabel());
 					Intelig= new IA(t,this);
+					t.setIA(Intelig);
 					break;
 				case 2:
 					t= new TanqueDePoder(19*40,0,this);//1 300
 					map.agregarEnemigo(t);
 					interfaz.añadirAPanel(t.obtenerGrafico().getJLabel());
 					Intelig= new IA(t,this);
+					t.setIA(Intelig);
 					break;
 				case 3:
 					t= new TanqueBlindado(0,11*40,this);//4 400
 					map.agregarEnemigo(t);
 					interfaz.añadirAPanel(t.obtenerGrafico().getJLabel());
 					Intelig= new IA(t,this);
+					t.setIA(Intelig);
 					
-					break;
 				}
-	  	E[cant++]=t;
-	  	
+	  	//E[cant++]=t;
+	    map.agregarEnemigo(t);  	
+	}
 	 return t;
 	}
   
@@ -85,11 +109,11 @@ public class Juego {
 	 map.removeEnemigo(g.obtenerX(), g.obtenerY());
 	 g.obtenerGrafico().setVisible(false);
 	 interfaz.remove(g.obtenerGrafico().getJLabel());
-	 destruirEnemigo(g);
+	 sumarPuntaje(g.getPuntos());
 	 
    }
   
-  private void sumarPuntaje(int i){
+  public void sumarPuntaje(int i){
 	  puntaje=puntaje+i;
   }
   
@@ -105,7 +129,7 @@ public class Juego {
 	System.out.println(puntaje);
   }
   
-  private Enemigo destruirEnemigo(Enemigo t){
+  /*private Enemigo destruirEnemigo(Enemigo t){
    boolean encontre=false;
    Enemigo tan=null;
    Enemigo aux=null;
@@ -125,7 +149,7 @@ public class Juego {
 		}
 	  sumarPuntaje(tan.getPuntos());
 	 return  tan;
-	}
+	}*/
   
    public boolean mover(Tanque t,int dir){
 	   t.setDir(dir);
@@ -136,10 +160,11 @@ public class Juego {
    
    public void agregarDisparo(Shot s){
 	   interfaz.añadirAPanel(s.obtenerGrafico().getJLabel());
-	   interfaz.getPanelGeneral().setComponentZOrder(s.obtenerGrafico().getJLabel(),0);
+	   interfaz.getPanelGeneral().setComponentZOrder(s.obtenerGrafico().getJLabel(),1);
 	   repaint();
 	   
    }
+   
    
    public void agregarObstaculo(Obstaculo o){
 	   map.agregarObstaculo(o);
@@ -147,9 +172,18 @@ public class Juego {
    }
    
    public void eliminarObstaculo(Obstaculo o){
+	   if(o!=null){
 	   o.obtenerGrafico().setVisible(false);
 	   interfaz.remove(o.obtenerGrafico().getJLabel());
 	   map.removeObstaculo(o.obtenerX(), o.obtenerY());
+           }
+   }
+   
+   public void agregarPowerUp(PowerUp p){
+	   map.agregarPowerUp(p);
+	   interfaz.añadirAPanel(p.obtenerGrafico().getJLabel());
+	   interfaz.getPanelGeneral().setComponentZOrder(p.obtenerGrafico().getJLabel(),0);
+	   repaint();
 	   
    }
    

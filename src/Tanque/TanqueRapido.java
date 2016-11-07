@@ -12,6 +12,8 @@ public class TanqueRapido extends Enemigo{
 		super(x,y,g);
 		resistencia=1;
 		puntos=200;
+		velocidadm=3*5;
+		velocidadd=2*5;
 		// TODO Auto-generated constructor stub
 		
 		graf=new ElementoGrafico(x,y,40,40);
@@ -29,6 +31,6 @@ public class TanqueRapido extends Enemigo{
 		// TODO Auto-generated method stub
 		return puntos;
 	}
-	public void disparar(){}
+
 
 }

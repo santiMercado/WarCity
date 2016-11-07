@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 import Interfaz.GUI;
 import Logica.Juego;
 import Modulos.ElementoGrafico;
+import Tanque.Shot;
 
 
 
@@ -21,7 +22,7 @@ public class Aguila extends Obstaculo{
   }
   
   
-  public boolean recibirDisparo(){
+  public boolean recibirDisparo(Shot s){
 	  
 	  //aca va el game over
 	  

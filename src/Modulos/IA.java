@@ -11,14 +11,21 @@ public class IA implements Runnable {
  protected Juego game;
  protected Thread t;
  protected Enemigo enemigo; 
+ protected boolean dormir;
  protected boolean controldeWhile;
  
  public IA(Enemigo en,Juego g){
+	 
 	 enemigo=en;
 	 game=g;
+	 dormir=false;
 	 t= new Thread(this,"IA");
 	 t.start();
  } 
+ 
+ public void dormir(){
+	dormir=true;
+ }
 
  public void run(){
    try{
@@ -28,14 +35,17 @@ public class IA implements Runnable {
 	   int n1=0;
 	   n1=rnd.nextInt(4);
 	   boolean aux=true;
-	   while(controldeWhile){  
+	   while(controldeWhile){ 
+		  if(dormir){
+			  Thread.sleep(5000);
+			  dormir=false;
+		  }
+		  
 		  aux=game.mover(enemigo,n1);
+		  enemigo.disparar();
 		  if(!aux) n1=rnd.nextInt(4);
 		  
-			  
-		      
-	      
-	   Thread.sleep(200);
+	      Thread.sleep(200);
  
 	   
           }

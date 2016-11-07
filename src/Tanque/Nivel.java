@@ -17,6 +17,13 @@ public abstract class Nivel {
 	
 	public int getdispSimultaneos(){return dispSimultaneos;}
 	
+	public void restarResistencia(){
+		resistencia--;
+	}
+	
+    public void setResistencia(int i){
+    	resistencia=i;
+    }
 			
 }
 

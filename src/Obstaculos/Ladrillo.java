@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 import Interfaz.GUI;
 import Logica.Juego;
 import Modulos.ElementoGrafico;
+import Tanque.Shot;
 
 
 public class Ladrillo extends Obstaculo {
@@ -20,7 +21,7 @@ public class Ladrillo extends Obstaculo {
 		graf.setVisible(true);
 	}
 	
-	public boolean recibirDisparo(){
+	public boolean recibirDisparo(Shot s){
 		if(resistencia==0) return false;
 		resistencia--;
 		if(resistencia==0){
@@ -30,6 +31,8 @@ public class Ladrillo extends Obstaculo {
 			
 		return true;
 	}
+	
+	
 	
 	
 }

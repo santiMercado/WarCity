@@ -8,38 +8,38 @@ import Modulos.GameObject;
 
 
 public abstract class Tanque extends GameObject{
-	protected Nivel n;
+	
 	protected int direccion;
-
+    protected int disparosActuales;
 
 	public Tanque(int x, int y,Juego g){
 		super(x,y,g);
 		colision=true;
 		direccion=3;
 		rect= new Rectangle(x,y,39,39);
-		//n= new Nivel1();
+		disparosActuales=0;
 	}
 
 	public void mover(int dir){
 
 		switch(dir){
 
-		case 0: {x=x-10;
+		case 0: {x=x-getVelocidadM();
 		rect.setBounds(x,y,39,39);
 		graf.setX(x);
 		break;}
 
-		case 1: { x=x+10;
+		case 1: { x=x+getVelocidadM();
 		rect.setBounds(x,y,39,39);
 		graf.setX(x);
 		break;}   
 
-		case 2: { y=y+10; 
+		case 2: { y=y+getVelocidadM(); 
 		rect.setBounds(x,y,39,39);
 		graf.setY(y);
 		break;}
 
-		case 3: { y=y-10;
+		case 3: { y=y-getVelocidadM();
 		rect.setBounds(x,y,39,39);
 		graf.setY(y);
 		break;}
@@ -58,15 +58,15 @@ public abstract class Tanque extends GameObject{
 
 	abstract public void disparar();
 
-    public int getVelocidadD(){return n.getVelocidadd();}
+    abstract public int getVelocidadD();
 
-    public int getVelocidadM(){return n.getVelocidadm();}
+    abstract public int getVelocidadM();
     
-    public int getResistencia(){return n.getResistencia();}
+    abstract public int getResistencia();
     
-    public int getDisparosS(){return n.getdispSimultaneos();}
+    abstract public int getDisparosS();
     
-
+    abstract public void terminoDisparo();
 
 }
 

@@ -14,6 +14,9 @@ public class TanqueBasico extends Enemigo {
 		super(x, y,g);
 		puntos=100;
 		resistencia=1;
+		velocidadm=1*5;
+		velocidadd=1*5;
+		
 		
 		
 		graf=new ElementoGrafico(x,y,40,40);
@@ -32,6 +35,6 @@ public class TanqueBasico extends Enemigo {
 		return puntos;
 	}
 	
-	public void disparar(){}
+	
 	
 }

@@ -11,7 +11,7 @@ public class GameObject {
  protected int x;
  protected int y;
  protected boolean colision;
- protected int resistencia;
+ //protected int resistencia;
  protected ElementoGrafico graf;
  protected Rectangle rect;
  
@@ -35,9 +35,9 @@ public class GameObject {
 	 return colision;
  }
  
- public int obtenerResistencia(){
-	 return resistencia;
- }
+ //public int obtenerResistencia(){
+//	 return resistencia;
+// }
  
  public ElementoGrafico obtenerGrafico(){
 	 return graf;

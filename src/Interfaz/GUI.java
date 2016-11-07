@@ -6,8 +6,11 @@ import Modulos.IA;
 import Obstaculos.Acero;
 import Obstaculos.Agua;
 import Obstaculos.Aguila;
+import Obstaculos.Granada;
 import Obstaculos.Ladrillo;
+import Obstaculos.PowerUp;
 import Obstaculos.Selva;
+import Obstaculos.TimerPW;
 import Tanque.Enemigo;
 import Tanque.Jugador;
 import Tanque.Shot;
@@ -26,6 +29,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.colorchooser.*;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+
+
+
+
 
 
 
@@ -96,7 +103,7 @@ public class GUI extends JFrame implements KeyListener {
 		panelGeneral.add(enemigo1);
 
 		game.crearEnemigo();
-		game.crearEnemigo();
+		//game.crearEnemigo();
 
 
 
@@ -146,7 +153,7 @@ public class GUI extends JFrame implements KeyListener {
 								else {
 									if (linea.charAt(j) == '4'){
 										game.agregarObstaculo(new Aguila(x,y,game));
-
+                                        
 										x=x+40;
 
 									}
@@ -213,8 +220,16 @@ public class GUI extends JFrame implements KeyListener {
 			
 		    
 		    game.getJugador().disparar();
-			
+			break;
 		}   
+		case KeyEvent.VK_P:
+		{
+			
+		    
+		    PowerUp p= new Granada(400,480,game);
+		    game.agregarPowerUp(p);
+			
+		}
 
 		}
 		System.out.println("keyTyped");

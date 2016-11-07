@@ -12,6 +12,8 @@ public class TanqueDePoder extends Enemigo {
 		super(x,y,g);
 		resistencia=1;
 		puntos=300;
+		velocidadm=2*5;
+		velocidadd=3*5;
 		
 		graf=new ElementoGrafico(x,y,40,40);
 		 graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/poderIzq.png")));
@@ -28,5 +30,5 @@ public class TanqueDePoder extends Enemigo {
 		return puntos;
 	}
 	
-	public void disparar(){}
+	
 }
