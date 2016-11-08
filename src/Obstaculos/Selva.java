@@ -15,9 +15,10 @@ public class Selva extends Obstaculo {
 	   colision=false;
 	   
 	   graf=new ElementoGrafico(x,y,40,40);
-		graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/selva.png")));
+		graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/pastoraro.png")));
 		graf.setImage(0);
 		graf.setVisible(true);
+		
    }
    
 }

@@ -16,7 +16,7 @@ public class Ladrillo extends Obstaculo {
 		colision=true;
 	    
 	    graf=new ElementoGrafico(x,y,40,40);
-		graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/ladrillo.png")));
+		graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/Ladrillocheto2.png")));
 		graf.setImage(0);
 		graf.setVisible(true);
 	}

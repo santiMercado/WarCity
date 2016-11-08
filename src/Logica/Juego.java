@@ -34,7 +34,7 @@ public class Juego {
 	 E= (Enemigo[]) new Enemigo[4];
 	 cant=0;
 	 interfaz=interf;
-	 interfaz.añadirAPanel(Player.obtenerGrafico().getJLabel());
+	 
 	
   }
   
@@ -99,22 +99,23 @@ public class Juego {
 					
 				}
 	  	//E[cant++]=t;
-	    map.agregarEnemigo(t);  	
+	      	
 	}
 	 return t;
 	}
   
   public void eliminarEnemigo(Enemigo g){
-	 
-	 map.removeEnemigo(g.obtenerX(), g.obtenerY());
 	 g.obtenerGrafico().setVisible(false);
-	 interfaz.remove(g.obtenerGrafico().getJLabel());
+     interfaz.remove(g.obtenerGrafico().getJLabel());
+	 map.removeEnemigo(g.obtenerX(), g.obtenerY());
 	 sumarPuntaje(g.getPuntos());
+	 g.getIA().terminate();
 	 
    }
   
   public void sumarPuntaje(int i){
 	  puntaje=puntaje+i;
+	  interfaz.actualizarPuntaje(puntaje);
   }
   
   public int obtenerCantEnemigos(){
@@ -152,10 +153,17 @@ public class Juego {
 	}*/
   
    public boolean mover(Tanque t,int dir){
+	  if(t.getDir()!=dir){
+		  t.setDir(dir);
+		  t.obtenerGrafico().setImage(dir);
+		  return true;
+	  }
+	  else{
 	   t.setDir(dir);
 	   t.obtenerGrafico().setImage(dir);
 	   
        return map.moverTanque(t,dir);
+   }
    }
    
    public void agregarDisparo(Shot s){

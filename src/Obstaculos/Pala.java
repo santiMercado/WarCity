@@ -1,6 +1,10 @@
-package Tanque;
+package Obstaculos;
 
+import javax.swing.ImageIcon;
+
+import Interfaz.GUI;
 import Logica.Juego;
+import Modulos.ElementoGrafico;
 import Obstaculos.Acero;
 import Obstaculos.Ladrillo;
 import Obstaculos.PowerUp;
@@ -11,12 +15,18 @@ public class Pala extends PowerUp implements Runnable{
 	public Pala(int x, int y, Juego g) {
 		super(x, y, g);
 		hilo=new Thread(this);
-		
+		graf= new ElementoGrafico(x,y,39,39);
+		graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/powerupdeprueba.png")));
+		graf.setImage(0);
+		graf.setVisible(true);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void activar() {
+		
+		graf.setVisible(false);
+		game.getInterfaz().getPanelGeneral().remove(graf.getJLabel());
 		
 		game.eliminarObstaculo(game.getMap().obtenerObstaculo(360,560));
 		game.eliminarObstaculo(game.getMap().obtenerObstaculo(360,520));
@@ -33,7 +43,7 @@ public class Pala extends PowerUp implements Runnable{
 		execute=true;
 		hilo.start();
 		// TODO Auto-generated method stub
-		
+		game.getMap().removePowerUp(x, y);
 	}
 
 	@Override
@@ -55,6 +65,7 @@ public class Pala extends PowerUp implements Runnable{
 			game.agregarObstaculo(new Ladrillo(440,520,game));
 			game.agregarObstaculo(new Ladrillo(440,560,game));
 			
+			game.repaint();
 			execute=false;
 			
 		} catch (InterruptedException e) {

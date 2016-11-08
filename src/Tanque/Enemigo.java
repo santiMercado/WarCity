@@ -23,8 +23,10 @@ public abstract class Enemigo extends Tanque {
 	 public boolean recibirDisparo(ShotJugador s){
 		 resistencia--;
 		 if(resistencia==0)
-			game.eliminarEnemigo(this);
-		 
+			{
+			 
+			 game.eliminarEnemigo(this);
+			}
 		 return true;
 	 }
 	

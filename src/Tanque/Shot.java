@@ -53,7 +53,7 @@ public class Shot extends GameObject implements Runnable {
 
 	public void moverDisparo(){
 
-		if(direccion==0){  if(t.obtenerX()<=0){ 
+		if(direccion==0){  if(x<=0){ 
 			t.terminoDisparo();
 			graf.setVisible(false);
 			game.getInterfaz().getPanelGeneral().remove(graf.getJLabel());
@@ -64,7 +64,7 @@ public class Shot extends GameObject implements Runnable {
 		}
 
 		if(direccion==1){   
-		  if(t.obtenerX()>=760){
+		  if(x>=800){
 			t.terminoDisparo();
 			graf.setVisible(false);
 			game.getInterfaz().getPanelGeneral().remove(graf.getJLabel());
@@ -75,18 +75,17 @@ public class Shot extends GameObject implements Runnable {
 		graf.setX(x);}
 
 		if(direccion==2){ 
-			if((t.obtenerX()<=0)||(t.obtenerY()>=560)){
+			if((x<=0)||(y>=600)){
 				t.terminoDisparo();
 				graf.setVisible(false);
 				game.getInterfaz().getPanelGeneral().remove(graf.getJLabel());
 				terminate();
-				
 			}
 			y=y+velocidad;
 			graf.setY(y);
 		}
 		if(direccion==3){ 
-			if((t.obtenerX()<=0)&&(t.obtenerY()<=0)){
+			if((x<=0)||(y<=0)){
 				t.terminoDisparo();
 				graf.setVisible(false);
 				game.getInterfaz().getPanelGeneral().remove(graf.getJLabel());
@@ -102,7 +101,6 @@ public class Shot extends GameObject implements Runnable {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-
 
 
 		while(execute){

@@ -16,10 +16,10 @@ public class Jugador extends Tanque{
 		lv = new Nivel1();
 
 		graf=new ElementoGrafico(n,m,40,40);
-		graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/tjugadorLEFT.png")));
-		graf.addImage(1, new ImageIcon(GUI.class.getResource("/Graficos/tjugadorRIGHT.png")));
-		graf.addImage(2, new ImageIcon(GUI.class.getResource("/Graficos/tjugadorDOWN.png")));
-		graf.addImage(3, new ImageIcon(GUI.class.getResource("/Graficos/tjugadorUP.png")));
+		graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/nave0.gif")));
+		graf.addImage(1, new ImageIcon(GUI.class.getResource("/Graficos/nave1.gif")));
+		graf.addImage(2, new ImageIcon(GUI.class.getResource("/Graficos/nave2.gif")));
+		graf.addImage(3, new ImageIcon(GUI.class.getResource("/Graficos/nave3.gif")));
 		graf.setImage(3);
 		graf.setVisible(true);
 

@@ -7,6 +7,8 @@ public class ElementoGrafico {
  protected JLabel etiqueta;
  protected ImageIcon[] imagenes;
  
+ protected int lasti=-1;
+ 
  public ElementoGrafico(int x,int y,int w,int h){
 	 etiqueta=new JLabel();
 	 etiqueta.setBounds(x,y,w,h);
@@ -23,10 +25,10 @@ public class ElementoGrafico {
  }
  
  public void setImage(int i){
-	 if(i<4)
+	 if(i<4){
+	 
 	 etiqueta.setIcon(imagenes[i]);
-	 
-	 
+	 }
 	 
  }
  

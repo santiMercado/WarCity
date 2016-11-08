@@ -164,14 +164,19 @@ public class Mapa {
 		return o;
 	}
 
-	public int removeEnemigo(int x, int y){
+	public void removeEnemigo(int x, int y){
 
 		for(int i=0;i<enemigos.size();i++){
 			if((enemigos.get(i).obtenerX()==x)&&(enemigos.get(i).obtenerY()==y)){
-				return enemigos.remove(i).getPuntos();
+				enemigos.remove(i);
 			}
 		}
-		return 0;
+		
+	}
+	
+	
+	public void removeEnemigo(Enemigo e){
+		enemigos.remove(e);
 	}
 
 	public void removeObstaculo(int x,int y){

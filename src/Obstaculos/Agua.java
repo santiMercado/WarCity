@@ -14,7 +14,7 @@ public class Agua extends Obstaculo{
 	  colision=true;
 	  resistencia=-1;
 	  graf=new ElementoGrafico(x,y,40,40);
-		graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/agua.png")));
+		graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/lava.gif")));
 		graf.setImage(0);
 		graf.setVisible(true);
   }
