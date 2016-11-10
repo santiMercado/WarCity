@@ -26,6 +26,7 @@ public class Granada extends PowerUp{
 	
 	public void activar(){
 		graf.setVisible(false);
+		game.sumarPuntaje(400);
 		game.getInterfaz().getPanelGeneral().remove(graf.getJLabel());
 		ArrayList<Enemigo> lista= new ArrayList<Enemigo>();
 		for(int i=0;i<game.getMap().getEnemigos().size();i++){

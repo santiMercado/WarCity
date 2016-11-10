@@ -35,7 +35,7 @@ public class Shot extends GameObject implements Runnable {
 
 	public void iniciarDisparo(){
 		execute=true;
-		game.getInterfaz().añadirAPanel(graf.getJLabel());
+		game.getInterfaz().agregarAPanel(graf.getJLabel());
 		hilo.start();
 	}
 

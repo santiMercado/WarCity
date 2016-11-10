@@ -27,6 +27,7 @@ public class Casco extends PowerUp implements Runnable {
 	public void activar() {
 	   graf.setVisible(false);
 	   game.getInterfaz().getPanelGeneral().remove(graf.getJLabel());
+	   game.sumarPuntaje(400);
 	   game.getMap().removePowerUp(x, y);
 	   oldres=game.getJugador().getResistencia();
 	   game.getJugador().setResistencia(9999);

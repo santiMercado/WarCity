@@ -16,26 +16,33 @@ import Tanque.TanqueRapido;
 
 import java.util.Random;
 
+import javax.management.timer.Timer;
+
 public class Juego {
   protected int puntaje;	
   protected Mapa map;
   protected Jugador Player;
-  protected Enemigo[] E;
   protected int cant;
   protected GUI interfaz;
   protected int vidasJugador;
- 
+  protected FabricaPW factorypw;
+  protected FabricaEnemigos factoryenemies;
+  protected int enemigosEliminados;
+  
+  
   
   public Juego(GUI interf){
 	 puntaje=0;
 	 vidasJugador=4;
+	 enemigosEliminados=0;
 	 Player= new Jugador(320,560,this);
 	 map= new Mapa(Player);
-	 E= (Enemigo[]) new Enemigo[4];
 	 cant=0;
 	 interfaz=interf;
+	 factoryenemies= new FabricaEnemigos(this);
+	 factorypw= new FabricaPW(this);
+	 factoryenemies.iniciar();
 	 
-	
   }
   
   public Mapa getMap(){return map;}
@@ -46,63 +53,40 @@ public class Juego {
   
   public void restarVida(){
 	  vidasJugador--;
-	  /*
-	   * if(vidasJugador==0) {
-	   * GameOver();
-	   * }
-	   */
+	  Player.obtenerGrafico().setVisible(false);
+	  
+	  if(vidasJugador==0) GameOver();
+	   else{
+		   Enemigo g;
+	     for(int i=0;i<map.getEnemigos().size();i++){
+		    g=map.removeEnemigo(map.getEnemigos().get(i).obtenerX(),map.getEnemigos().get(i).obtenerY());
+		    g.obtenerGrafico().setVisible(false);
+		    interfaz.remove(g.obtenerGrafico().getJLabel());
+		    g.getIA().terminate();
+      }
+	     Player.setX(320);
+	     Player.setY(560);
+	     Player.getRectangle().setBounds(320, 560, 39, 39);
+	     Player.obtenerGrafico().setX(320);
+	     Player.obtenerGrafico().setY(560);
+	     Player.obtenerGrafico().setVisible(true);
+	     Player.reiniciar();
+	     
+	     
+	     factoryenemies.crearEnemigo();
+	     factoryenemies.crearEnemigo();
+	     factoryenemies.crearEnemigo();
+	     factoryenemies.crearEnemigo();
+	     
+	     
+	     repaint();
+	     
   }
-  
+  }
   public void sumarVida(){
 	  if(vidasJugador<4) vidasJugador++;
   }
   
-  public Enemigo crearEnemigo()	{//El chequeo del arreglo lo hago en la GUI
-	 
-	  
-	  Enemigo t=null;
-	  
-	if(map.getEnemigos().size()<4){  
-	  Random  rnd = new Random();
-	  IA Intelig;
-	  int n =rnd.nextInt(4);
-	  
-	switch(n)	{
-				case 0:
-					t= new TanqueBasico(0,0,this); //1 100
-					map.agregarEnemigo(t);
-					interfaz.añadirAPanel(t.obtenerGrafico().getJLabel());
-					Intelig= new IA(t,this);
-					t.setIA(Intelig);
-					
-					break;
-				case 1:
-					t= new TanqueRapido(19*40,14*40,this);//1 200
-					map.agregarEnemigo(t);
-					interfaz.añadirAPanel(t.obtenerGrafico().getJLabel());
-					Intelig= new IA(t,this);
-					t.setIA(Intelig);
-					break;
-				case 2:
-					t= new TanqueDePoder(19*40,0,this);//1 300
-					map.agregarEnemigo(t);
-					interfaz.añadirAPanel(t.obtenerGrafico().getJLabel());
-					Intelig= new IA(t,this);
-					t.setIA(Intelig);
-					break;
-				case 3:
-					t= new TanqueBlindado(0,11*40,this);//4 400
-					map.agregarEnemigo(t);
-					interfaz.añadirAPanel(t.obtenerGrafico().getJLabel());
-					Intelig= new IA(t,this);
-					t.setIA(Intelig);
-					
-				}
-	  	//E[cant++]=t;
-	      	
-	}
-	 return t;
-	}
   
   public void eliminarEnemigo(Enemigo g){
 	 g.obtenerGrafico().setVisible(false);
@@ -111,7 +95,12 @@ public class Juego {
 	 sumarPuntaje(g.getPuntos());
 	 g.getIA().terminate();
 	 
+	 enemigosEliminados++;
+	 if(enemigosEliminados%4==0) factorypw.crearPW();
+	 if(map.getEnemigos().size()<2)factoryenemies.crearEnemigo();
+	 
    }
+  
   
   public void sumarPuntaje(int i){
 	  puntaje=puntaje+i;
@@ -122,35 +111,11 @@ public class Juego {
 	return cant;
   }
   
-  public Enemigo obtenerEnemigo(int n){// PARA TESTEO!!!!!!!!!!!!!!!!!!!
-	return E[n];
-  }
-  
   public void imprimirPuntaje(){
 	System.out.println(puntaje);
   }
   
-  /*private Enemigo destruirEnemigo(Enemigo t){
-   boolean encontre=false;
-   Enemigo tan=null;
-   Enemigo aux=null;
-		for(int i=0; ((i<4)&&(!encontre)) ; i++){
-			if(E[i]==t)	{//-> ESTO ESTA BIEN???
-				encontre=true;
-				tan=t;
-				E[i]=null;
-				cant--;
-				while(i<3)	{
-					aux=E[i+1];
-					E[i+1]=E[i];
-					E[i]=aux;
-					i++;
-				}
-			}
-		}
-	  sumarPuntaje(tan.getPuntos());
-	 return  tan;
-	}*/
+ 
   
    public boolean mover(Tanque t,int dir){
 	  if(t.getDir()!=dir){
@@ -167,7 +132,7 @@ public class Juego {
    }
    
    public void agregarDisparo(Shot s){
-	   interfaz.añadirAPanel(s.obtenerGrafico().getJLabel());
+	   interfaz.agregarAPanel(s.obtenerGrafico().getJLabel());
 	   interfaz.getPanelGeneral().setComponentZOrder(s.obtenerGrafico().getJLabel(),1);
 	   repaint();
 	   
@@ -176,7 +141,7 @@ public class Juego {
    
    public void agregarObstaculo(Obstaculo o){
 	   map.agregarObstaculo(o);
-	   interfaz.añadirAPanel(o.obtenerGrafico().getJLabel());
+	   interfaz.agregarAPanel(o.obtenerGrafico().getJLabel());
    }
    
    public void eliminarObstaculo(Obstaculo o){
@@ -189,9 +154,20 @@ public class Juego {
    
    public void agregarPowerUp(PowerUp p){
 	   map.agregarPowerUp(p);
-	   interfaz.añadirAPanel(p.obtenerGrafico().getJLabel());
+	   interfaz.agregarAPanel(p.obtenerGrafico().getJLabel());
 	   interfaz.getPanelGeneral().setComponentZOrder(p.obtenerGrafico().getJLabel(),0);
 	   repaint();
+	   
+   }
+   
+   public void GameOver(){
+	   factoryenemies.terminate();
+	   factorypw.terminate();
+	   for(int i=0;i<map.getEnemigos().size();i++){
+		    map.getEnemigos().get(i).getIA().terminate();
+       }
+	   
+	   //interfaz.gameover();
 	   
    }
    

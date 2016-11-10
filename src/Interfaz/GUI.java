@@ -52,6 +52,7 @@ import javax.swing.ImageIcon;
 
 import javax.swing.JLayeredPane;
 
+
 // Lectura de archivos
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -65,10 +66,11 @@ public class GUI extends JFrame implements KeyListener {
 
 
 	protected JLabel puntaje;
-	protected JPanel panelGeneral;
+	protected JPanelFondo panelGeneral;
 	private Juego game;
 	private JLabel aux;
     protected JLayeredPane layer;
+    protected JLabel gover;
 	
 	boolean esta=false;
 	boolean estaLadrillo=false;
@@ -93,46 +95,21 @@ public class GUI extends JFrame implements KeyListener {
 	public GUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 650);  //820 650
-		panelGeneral = new JPanel();
-		panelGeneral.setBounds(100, 100, 1000, 650);   //800 600
-		panelGeneral.setBackground(new Color(0,0,0));
-		
+		panelGeneral = new JPanelFondo();
 		panelGeneral.setLayout(null);
-		
-		//layer= new JLayeredPane();
-		//layer.setBounds(100, 100, 800, 600);
-		//layer.setLayout(null);
+		panelGeneral.setBounds(100, 100, 1000, 650);   //800 600
+		panelGeneral.setIcon(new ImageIcon(GUI.class.getResource("/Graficos/fondodeprueba.jpg")));
+		//panelGeneral.setBackground(new Color(0,0,0));
 		getContentPane().add(panelGeneral);
 		
-	   /* JLabel fondo= new JLabel();
-		fondo.setBounds(100, 100, 800, 600);
-		fondo.setIcon(new ImageIcon(GUI.class.getResource("/Graficos/fondodeagus.gif")));
-		fondo.setVisible(true);*/
-		//layer.add(fondo,0);
-		
-		
-	/*	JPanel fondop=new JPanel();
-		
-		layer.add(fondop, 0);
-		fondop.setBounds(100, 100, 800, 600);
-		fondop.setVisible(true);
-		fondop.add(fondo);
-		fondop.add(panelGeneral);
-		
-		*/
+	
+		 
+	    
 		
 		JLabel[] arr= new JLabel[300];
        
         int cant=0;
 		game= new Juego(this);
-		//getContentPane().add(game.getJugador().obtenerGrafico().getJLabel());
-		
-		/*JLabel fondo= new JLabel();
-		fondo.setBounds(0, 0, 800, 600);
-		fondo.setIcon(new ImageIcon(GUI.class.getResource("/Graficos/fondodeagus.gif")));
-		fondo.setVisible(true);
-		panelGeneral.add(fondo);
-		*/
 		
 		JLabel score= new JLabel();
 		score.setBounds(830, 0, 400, 100);
@@ -150,10 +127,17 @@ public class GUI extends JFrame implements KeyListener {
 		puntaje.setText(""+game.getPuntaje());
 		puntaje.setVisible(true);
 		panelGeneral.add(puntaje);
-	
-		añadirAPanel(game.getJugador().obtenerGrafico().getJLabel());
-		game.crearEnemigo();
-		//game.crearEnemigo();
+		
+		gover= new JLabel();
+		gover.setBounds(810, 110, 400, 100);
+	    gover.setFont(new Font("3dventure", Font.PLAIN, 32)); 
+		gover.setForeground(Color.red);
+		gover.setText("GAME OVER");
+		gover.setVisible(false);
+	    panelGeneral.add(gover);
+		
+		agregarAPanel(game.getJugador().obtenerGrafico().getJLabel());
+		
         Obstaculo oaux;
 
 
@@ -182,7 +166,7 @@ public class GUI extends JFrame implements KeyListener {
 						if (linea.charAt(j) == '1'){
 							oaux=new Ladrillo(x,y,game);
 							game.agregarObstaculo(oaux);
-                            añadirAPanel(oaux.obtenerGrafico().getJLabel());
+                            agregarAPanel(oaux.obtenerGrafico().getJLabel());
 							x=x+40;
 
 						}
@@ -190,7 +174,7 @@ public class GUI extends JFrame implements KeyListener {
 							if (linea.charAt(j) == '2'){
 								oaux=new Agua(x,y,game);
 								game.agregarObstaculo(oaux);
-	                            añadirAPanel(oaux.obtenerGrafico().getJLabel());
+	                            agregarAPanel(oaux.obtenerGrafico().getJLabel());
 								x=x+40;
 
 							}
@@ -198,7 +182,7 @@ public class GUI extends JFrame implements KeyListener {
 								if (linea.charAt(j) == '3'){
 									oaux=new Acero(x,y,game);
 									game.agregarObstaculo(oaux);
-		                            añadirAPanel(oaux.obtenerGrafico().getJLabel());
+		                            agregarAPanel(oaux.obtenerGrafico().getJLabel());
 									x=x+40;
 
 								}
@@ -206,7 +190,7 @@ public class GUI extends JFrame implements KeyListener {
 									if (linea.charAt(j) == '4'){
 										oaux=new Aguila(x,y,game);
 										game.agregarObstaculo(oaux);
-			                            añadirAPanel(oaux.obtenerGrafico().getJLabel());
+			                            agregarAPanel(oaux.obtenerGrafico().getJLabel());
 										x=x+40;
 
 									}
@@ -214,7 +198,7 @@ public class GUI extends JFrame implements KeyListener {
 										if (linea.charAt(j) == '5'){
 											oaux=new Selva(x,y,game);
 											game.agregarObstaculo(oaux);
-				                            añadirAPanel(oaux.obtenerGrafico().getJLabel());
+				                            agregarAPanel(oaux.obtenerGrafico().getJLabel());
 				                            panelGeneral.setComponentZOrder(oaux.obtenerGrafico().getJLabel(), 1);
 											x=x+40;
 
@@ -281,6 +265,7 @@ public class GUI extends JFrame implements KeyListener {
 		{
 		    PowerUp p= new Pala(440,480,game);
 		    game.agregarPowerUp(p);
+		    game.getMap().removePowerUp(p.obtenerX(),p.obtenerY());
 		}
 
 		}
@@ -297,7 +282,7 @@ public class GUI extends JFrame implements KeyListener {
 
 	}
 
-	public void añadirAPanel(JLabel j){
+	public void agregarAPanel(JLabel j){
 		panelGeneral.add(j);
 	}
 	
@@ -306,4 +291,22 @@ public class GUI extends JFrame implements KeyListener {
 	}
 	
 	public JPanel getPanelGeneral(){return panelGeneral;}
+	
+	public void gameover(){
+		/*JLabel gover= new JLabel();
+		
+		gover.setBounds(830, 110, 100, 100);
+	    gover.setFont(new Font("3dventure", Font.PLAIN, 32)); 
+		gover.setForeground(Color.red);
+		gover.setText("GAME OVER");*/
+		gover.setVisible(true);
+	    //panelGeneral.add(gover);
+	    
+	   // panelGeneral.repaint();
+	}
+	
+	
+	
+	
+	
 }

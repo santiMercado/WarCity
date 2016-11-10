@@ -17,6 +17,11 @@ public class LifeUp extends PowerUp{
 	}
 
 	public void activar(){
+		graf.setVisible(false);
+		game.getInterfaz().getPanelGeneral().remove(graf.getJLabel());
+		game.getMap().removePowerUp(x, y);
+		game.sumarPuntaje(400);
 		game.sumarVida();
+		
 	}
 }

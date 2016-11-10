@@ -10,11 +10,12 @@ import Modulos.ElementoGrafico;
 
 public class Jugador extends Tanque{
 	protected Nivel	lv;
+	protected int powerups;
     
 	public Jugador(int n,int m,Juego g){
 		super(n,m,g);
 		lv = new Nivel1();
-
+        powerups=0;
 		graf=new ElementoGrafico(n,m,40,40);
 		graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/nave0.gif")));
 		graf.addImage(1, new ImageIcon(GUI.class.getResource("/Graficos/nave1.gif")));
@@ -23,6 +24,12 @@ public class Jugador extends Tanque{
 		graf.setImage(3);
 		graf.setVisible(true);
 
+	}
+	
+	
+	public void agarrepowerup(){
+		powerups++;
+		if(powerups%4==0) Mejorar();	
 	}
 
 	public void Mejorar(){
@@ -62,6 +69,10 @@ public class Jugador extends Tanque{
 		
 		 return true;
 	 }
+	
+	public void reiniciar(){
+		lv=new Nivel1();
+	}
 
 	@Override
 	public void disparar() {
@@ -72,7 +83,7 @@ public class Jugador extends Tanque{
 	int xx=x;
 	int yy=y;
 	
-	if(direccion==0){xx=xx; yy=yy+14;}
+	if(direccion==0){yy=yy+14;}
 	if(direccion==1){xx=xx+40; yy=yy+15;}
 	if(direccion==2){xx=xx+16; yy=yy+40;}
 	if(direccion==3) {xx=xx+15; yy=yy-10;}

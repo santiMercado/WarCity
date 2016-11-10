@@ -20,7 +20,7 @@ public class TimerPW extends PowerUp{
 	public void activar() {
 		graf.setVisible(false);
 		game.getInterfaz().getPanelGeneral().remove(graf.getJLabel());
-		
+		game.sumarPuntaje(400);
 		for(int i=0;i<game.getMap().getEnemigos().size();i++){
 			game.getMap().getEnemigos().get(i).getIA().dormir();
 	    }

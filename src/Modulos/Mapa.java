@@ -164,14 +164,14 @@ public class Mapa {
 		return o;
 	}
 
-	public void removeEnemigo(int x, int y){
+	public Enemigo removeEnemigo(int x, int y){
 
 		for(int i=0;i<enemigos.size();i++){
 			if((enemigos.get(i).obtenerX()==x)&&(enemigos.get(i).obtenerY()==y)){
-				enemigos.remove(i);
+				return enemigos.remove(i);
 			}
 		}
-		
+		return null;
 	}
 	
 	
@@ -204,13 +204,15 @@ public class Mapa {
 		return null;
 	}
 	
-	public void removePowerUp(int x,int y){
+	public PowerUp removePowerUp(int x,int y){
 
 		for(int i=0;i<powerups.size();i++){
 			if((powerups.get(i).obtenerX()==x)&&(powerups.get(i).obtenerY()==y)){
-				powerups.remove(i);
+				return powerups.remove(i);
 			}
 		}
+		
+		return null;
 	}
 
 	public ArrayList<Obstaculo> getObstaculos(){

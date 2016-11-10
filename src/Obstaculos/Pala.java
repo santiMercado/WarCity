@@ -27,7 +27,7 @@ public class Pala extends PowerUp implements Runnable{
 		
 		graf.setVisible(false);
 		game.getInterfaz().getPanelGeneral().remove(graf.getJLabel());
-		
+		game.sumarPuntaje(400);
 		game.eliminarObstaculo(game.getMap().obtenerObstaculo(360,560));
 		game.eliminarObstaculo(game.getMap().obtenerObstaculo(360,520));
 		game.eliminarObstaculo(game.getMap().obtenerObstaculo(400,520));
