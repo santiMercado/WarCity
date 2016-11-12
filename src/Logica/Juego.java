@@ -105,7 +105,7 @@ public class Juego {
 	 
 	 enemigosEliminados++;
 	 if(enemigosEliminados%4==0) factorypw.crearPW();
-	 if(map.getEnemigos().size()<2)factoryenemies.crearEnemigo().getIA().iniciar();;
+	 if(map.getEnemigos().size()<2)solicitarEnemigo();
 	 
 	 
 	 

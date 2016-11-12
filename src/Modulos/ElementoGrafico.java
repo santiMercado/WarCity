@@ -12,7 +12,7 @@ public class ElementoGrafico {
  public ElementoGrafico(int x,int y,int w,int h){
 	 etiqueta=new JLabel();
 	 etiqueta.setBounds(x,y,w,h);
-	 imagenes= new ImageIcon[4];
+	 imagenes= new ImageIcon[8];
  }
  
  public void setVisible(boolean visibilidad){ 
@@ -20,12 +20,12 @@ public class ElementoGrafico {
  }
  
  public void addImage(int i,ImageIcon imagen){
-	 if(i<4)
+	 if(i<8)
 	 imagenes[i]=imagen;
  }
  
  public void setImage(int i){
-	 if(i<4){
+	 if(i<8){
 	 
 	 etiqueta.setIcon(imagenes[i]);
 	 }

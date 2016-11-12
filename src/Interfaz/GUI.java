@@ -290,17 +290,17 @@ public class GUI extends JFrame implements KeyListener {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_DOWN:
 
-			
+			game.getJugador().obtenerGrafico().setImage(6);
 			break;
 		case KeyEvent.VK_UP:
-			
+			game.getJugador().obtenerGrafico().setImage(7);
 			break;
 		case KeyEvent.VK_LEFT:
-
+			game.getJugador().obtenerGrafico().setImage(4);
 
 			break;
 		case KeyEvent.VK_RIGHT:
-
+			game.getJugador().obtenerGrafico().setImage(5);
 
 		}
 	}
