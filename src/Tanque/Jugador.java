@@ -18,7 +18,7 @@ public class Jugador extends Tanque{
         powerups=0;
 		graf=new ElementoGrafico(n,m,40,40);
 		graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/nave0.gif")));
-		graf.addImage(1, new ImageIcon(GUI.class.getResource("/Graficos/nave1.gif")));
+		graf.addImage(1, new ImageIcon(GUI.class.getResource("/Graficos/aangm1.gif")));
 		graf.addImage(2, new ImageIcon(GUI.class.getResource("/Graficos/nave2.gif")));
 		graf.addImage(3, new ImageIcon(GUI.class.getResource("/Graficos/nave3.gif")));
 		graf.setImage(3);
@@ -79,26 +79,18 @@ public class Jugador extends Tanque{
 		// TODO Auto-generated method stub
 	if(disparosActuales<lv.getdispSimultaneos())	{
 	
-    disparosActuales++;		
-	int xx=x;
-	int yy=y;
+   disparosActuales++;		
 	
-	if(direccion==0){yy=yy+14;}
-	if(direccion==1){xx=xx+40; yy=yy+15;}
-	if(direccion==2){xx=xx+16; yy=yy+40;}
-	if(direccion==3) {xx=xx+15; yy=yy-10;}
-	
-	System.out.println(direccion);
-	Shot s=new ShotJugador(xx,yy,game);
-	game.agregarDisparo(s);
-	s.iniciarDisparo();
+		
+		lv.disparar(x, y, direccion, game);
+		
 	}
 	}
 
 	@Override
 	public void terminoDisparo() {
 	   disparosActuales--;
-	   System.out.println("Termino disparo! Ahora mis disparos actuales son: "+disparosActuales);
+	  
 	}
 
 }

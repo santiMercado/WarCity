@@ -10,7 +10,7 @@ import Tanque.TanqueBlindado;
 import Tanque.TanqueDePoder;
 import Tanque.TanqueRapido;
 
-public class FabricaEnemigos implements Runnable {
+public class FabEnemigos implements Runnable {
  protected Thread hilo;
  protected boolean execute;
  protected Juego game;
@@ -18,7 +18,7 @@ public class FabricaEnemigos implements Runnable {
  protected Random n,pos;
  protected Par[] posiciones;
   
- public FabricaEnemigos(Juego g){
+ public FabEnemigos(Juego g){
 	 game=g;
 	 map=g.getMap();
 	 
@@ -33,13 +33,9 @@ public class FabricaEnemigos implements Runnable {
  }
  
  public void iniciar(){
-	 crearEnemigo();
-	 crearEnemigo();
-	 crearEnemigo();
-	 crearEnemigo();
 	 
-	 hilo=new Thread(this,"fabenemigos");
 	 execute=true;
+	 hilo=new Thread(this,"fabenemigos");
 	 hilo.start();
  }
  
@@ -89,51 +85,32 @@ public class FabricaEnemigos implements Runnable {
 			}
 			else{
 				posicion=pos.nextInt(4);}
-			break;
+			
 		}
 		
 	   }
 	}
-
-	switch(enemy)	{
-	case 0:
-		e= new TanqueBasico(posiciones[posicion].getX(),posiciones[posicion].getY(),game); //1 100
-		map.agregarEnemigo(e);
-		game.getInterfaz().agregarAPanel(e.obtenerGrafico().getJLabel());
-		Intelig= new IA(e,game);
-		e.setIA(Intelig);
-		
-		break;
-	case 1:
-		e= new TanqueRapido(posiciones[posicion].getX(),posiciones[posicion].getY(),game);
-		map.agregarEnemigo(e);
-		game.getInterfaz().agregarAPanel(e.obtenerGrafico().getJLabel());
-		Intelig= new IA(e,game);
-		e.setIA(Intelig);
-		break;
-	case 2:
-		e= new TanqueDePoder(posiciones[posicion].getX(),posiciones[posicion].getY(),game);
-		map.agregarEnemigo(e);
-		game.getInterfaz().agregarAPanel(e.obtenerGrafico().getJLabel());
-		Intelig= new IA(e,game);
-		e.setIA(Intelig);
-		break;
-	case 3:
-		e= new TanqueBlindado(posiciones[posicion].getX(),posiciones[posicion].getY(),game);
-		map.agregarEnemigo(e);
-		game.getInterfaz().agregarAPanel(e.obtenerGrafico().getJLabel());
-		Intelig= new IA(e,game);
-		e.setIA(Intelig);
-		
+	
+	switch(enemy){
+	  
+	case 0: e= new TanqueBasico(posiciones[posicion].getX(),posiciones[posicion].getY(),game); break;
+	case 1: e= new TanqueRapido(posiciones[posicion].getX(),posiciones[posicion].getY(),game); break;
+	case 2: e= new TanqueDePoder(posiciones[posicion].getX(),posiciones[posicion].getY(),game); break;
+	case 3: e= new TanqueBlindado(posiciones[posicion].getX(),posiciones[posicion].getY(),game);
 	}
+	
+	map.agregarEnemigo(e);
+	game.getInterfaz().agregarAPanel(e.obtenerGrafico().getJLabel());
+	Intelig= new IA(e,game);
+	e.setIA(Intelig);
 	return e;
-	}
-	return null;
-	 
+	 }
+	 return null;
 	}
  
 	public void run() {
 		while(execute){
+			
 		try {
 			Thread.sleep(20000);
 		} catch (InterruptedException e) {
@@ -141,8 +118,8 @@ public class FabricaEnemigos implements Runnable {
 			e.printStackTrace();
 		}
 		
-		if(map.getEnemigos().size()<4) crearEnemigo();
-		//if(map.getEnemigos().size()<2) crearEnemigo();
+		if(map.getEnemigos().size()<4) game.solicitarEnemigo();
+		
 	}
 
 	}

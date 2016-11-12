@@ -6,6 +6,7 @@ import Interfaz.GUI;
 import Logica.Juego;
 import Modulos.ElementoGrafico;
 import Tanque.Shot;
+import Tanque.ShotJugadorX;
 
 
 public class Ladrillo extends Obstaculo {
@@ -31,8 +32,23 @@ public class Ladrillo extends Obstaculo {
 			
 		return true;
 	}
-	
-	
-	
-	
+     public boolean recibirDisparoX(ShotJugadorX s){
+		
+		if(resistencia==0) return false;
+		
+		 resistencia--;
+		 
+		if(resistencia==0){
+			colision=false;
+			game.eliminarObstaculo(this);
+		}
+		
+		return true;
+	}
+     
 }
+	
+	
+	
+	
+

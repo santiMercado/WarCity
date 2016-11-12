@@ -26,9 +26,8 @@ public class Juego {
   protected GUI interfaz;
   protected int vidasJugador;
   protected FabricaPW factorypw;
-  protected FabricaEnemigos factoryenemies;
+  protected FabEnemigos factoryenemies;
   protected int enemigosEliminados;
-  
   
   
   public Juego(GUI interf){
@@ -39,8 +38,12 @@ public class Juego {
 	 map= new Mapa(Player);
 	 cant=0;
 	 interfaz=interf;
-	 factoryenemies= new FabricaEnemigos(this);
+	 factoryenemies= new FabEnemigos(this);
 	 factorypw= new FabricaPW(this);
+	 factoryenemies.crearEnemigo().getIA().iniciar();
+	 factoryenemies.crearEnemigo().getIA().iniciar();
+	 factoryenemies.crearEnemigo().getIA().iniciar();
+	 factoryenemies.crearEnemigo().getIA().iniciar();
 	 factoryenemies.iniciar();
 	 
   }
@@ -73,13 +76,13 @@ public class Juego {
 	     Player.reiniciar();
 	     
 	     
-	     factoryenemies.crearEnemigo();
-	     factoryenemies.crearEnemigo();
-	     factoryenemies.crearEnemigo();
-	     factoryenemies.crearEnemigo();
+	     factoryenemies.crearEnemigo().getIA().iniciar();
+	     factoryenemies.crearEnemigo().getIA().iniciar();
+	     factoryenemies.crearEnemigo().getIA().iniciar();
+	    
 	     
 	     
-	     repaint();
+	     interfaz.repintar();
 	     
   }
   }
@@ -87,6 +90,9 @@ public class Juego {
 	  if(vidasJugador<4) vidasJugador++;
   }
   
+  public void solicitarEnemigo(){
+	  factoryenemies.crearEnemigo().getIA().iniciar();
+  }
   
   public void eliminarEnemigo(Enemigo g){
 	 g.obtenerGrafico().setVisible(false);
@@ -97,7 +103,9 @@ public class Juego {
 	 
 	 enemigosEliminados++;
 	 if(enemigosEliminados%4==0) factorypw.crearPW();
-	 if(map.getEnemigos().size()<2)factoryenemies.crearEnemigo();
+	 if(map.getEnemigos().size()<2)factoryenemies.crearEnemigo().getIA().iniciar();;
+	 
+	 
 	 
    }
   
@@ -121,12 +129,13 @@ public class Juego {
 	  if(t.getDir()!=dir){
 		  t.setDir(dir);
 		  t.obtenerGrafico().setImage(dir);
+		  interfaz.repintar();
 		  return true;
 	  }
 	  else{
 	   t.setDir(dir);
 	   t.obtenerGrafico().setImage(dir);
-	   
+	   interfaz.repintar();
        return map.moverTanque(t,dir);
    }
    }
@@ -134,7 +143,7 @@ public class Juego {
    public void agregarDisparo(Shot s){
 	   interfaz.agregarAPanel(s.obtenerGrafico().getJLabel());
 	   interfaz.getPanelGeneral().setComponentZOrder(s.obtenerGrafico().getJLabel(),1);
-	   repaint();
+	   interfaz.repintar();
 	   
    }
    
@@ -156,18 +165,19 @@ public class Juego {
 	   map.agregarPowerUp(p);
 	   interfaz.agregarAPanel(p.obtenerGrafico().getJLabel());
 	   interfaz.getPanelGeneral().setComponentZOrder(p.obtenerGrafico().getJLabel(),0);
-	   repaint();
+	   interfaz.repintar();
 	   
    }
    
    public void GameOver(){
+	   
 	   factoryenemies.terminate();
 	   factorypw.terminate();
 	   for(int i=0;i<map.getEnemigos().size();i++){
 		    map.getEnemigos().get(i).getIA().terminate();
        }
 	   
-	   //interfaz.gameover();
+	   interfaz.gameover();
 	   
    }
    
@@ -175,8 +185,6 @@ public class Juego {
 	   return interfaz;
    }
    
-   public void repaint(){
-	   interfaz.repaint();
-   }
+  
 }
 

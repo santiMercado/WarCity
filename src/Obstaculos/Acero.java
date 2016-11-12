@@ -6,6 +6,8 @@ import Interfaz.GUI;
 import Logica.Juego;
 import Modulos.ElementoGrafico;
 import Tanque.Shot;
+import Tanque.ShotEnemigo;
+import Tanque.ShotJugador;
 import Tanque.ShotJugadorX;
 
 
@@ -22,12 +24,16 @@ public class Acero extends Obstaculo{
 	}
 	
 	public boolean recibirDisparo(Shot s){
+		
 		return true;
 	}
 	
-	public boolean recibirDisparo(ShotJugadorX s){
+public boolean recibirDisparoX(ShotJugadorX s){
+		System.out.println("hola");
 		if(resistencia==0) return false;
-		resistencia--;
+		
+		 resistencia--;
+		 
 		if(resistencia==0){
 			colision=false;
 			game.eliminarObstaculo(this);
@@ -36,3 +42,6 @@ public class Acero extends Obstaculo{
 		return true;
 	}
 }
+	
+
+	

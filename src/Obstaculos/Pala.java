@@ -65,7 +65,7 @@ public class Pala extends PowerUp implements Runnable{
 			game.agregarObstaculo(new Ladrillo(440,520,game));
 			game.agregarObstaculo(new Ladrillo(440,560,game));
 			
-			game.repaint();
+			game.getInterfaz().repintar();
 			execute=false;
 			
 		} catch (InterruptedException e) {

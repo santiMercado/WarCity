@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 import Logica.Juego;
 import Modulos.*;
 import Tanque.Shot;
+import Tanque.ShotJugadorX;
 
 
 public class Obstaculo extends GameObject {
@@ -17,4 +18,9 @@ public class Obstaculo extends GameObject {
 	public boolean recibirDisparo(Shot s){
 		return false;
 	}
+	
+	public boolean recibirDisparoX(ShotJugadorX s){
+		return false;
+	}
+      
 }

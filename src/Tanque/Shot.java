@@ -96,7 +96,7 @@ public class Shot extends GameObject implements Runnable {
 			graf.setY(y);
 		}
 
-		game.repaint();
+		game.getInterfaz().repintar();
 	}
 	@Override
 	public void run() {

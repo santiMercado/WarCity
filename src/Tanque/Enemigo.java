@@ -32,7 +32,7 @@ public abstract class Enemigo extends Tanque {
 	
 	 public int getVelocidadD(){return velocidadd;}
 
-	 public int getVelocidadM(){return velocidadm;}
+	 public int getVelocidadM(){return velocidadm+4;}
 	    
 	 public int getResistencia(){return resistencia;}
 	    
