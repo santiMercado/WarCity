@@ -64,7 +64,7 @@ public class Jugador extends Tanque{
 
 	
 	public boolean recibirDisparo(ShotEnemigo s){
-		lv.restarResistencia(); 
+		lv.restarResistencia();	
 		if(lv.getResistencia()==0) game.restarVida();
 		
 		 return true;

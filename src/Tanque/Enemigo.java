@@ -14,6 +14,7 @@ public abstract class Enemigo extends Tanque {
    public Enemigo(int x, int y,Juego g) {
 		super(x,y,g);
 		dispSimultaneos=1;
+		//inteligencia= new IA(this,game);
 		// TODO Auto-generated constructor stub
 	}
   

@@ -40,10 +40,10 @@ public class Juego {
 	 interfaz=interf;
 	 factoryenemies= new FabEnemigos(this);
 	 factorypw= new FabricaPW(this);
-	 factoryenemies.crearEnemigo().getIA().iniciar();
-	 factoryenemies.crearEnemigo().getIA().iniciar();
-	 factoryenemies.crearEnemigo().getIA().iniciar();
-	 factoryenemies.crearEnemigo().getIA().iniciar();
+	 solicitarEnemigo();
+	 solicitarEnemigo();
+	 solicitarEnemigo();
+	 solicitarEnemigo();
 	 factoryenemies.iniciar();
 	 
   }
@@ -62,10 +62,12 @@ public class Juego {
 	   else{
 		   Enemigo g;
 	     for(int i=0;i<map.getEnemigos().size();i++){
+	    	
 		    g=map.removeEnemigo(map.getEnemigos().get(i).obtenerX(),map.getEnemigos().get(i).obtenerY());
 		    g.obtenerGrafico().setVisible(false);
 		    interfaz.remove(g.obtenerGrafico().getJLabel());
 		    g.getIA().terminate();
+		    
       }
 	     Player.setX(320);
 	     Player.setY(560);
@@ -75,13 +77,9 @@ public class Juego {
 	     Player.obtenerGrafico().setVisible(true);
 	     Player.reiniciar();
 	     
-	     
-	     factoryenemies.crearEnemigo().getIA().iniciar();
-	     factoryenemies.crearEnemigo().getIA().iniciar();
-	     factoryenemies.crearEnemigo().getIA().iniciar();
-	    
-	     
-	     
+	     solicitarEnemigo();
+	     solicitarEnemigo();
+	
 	     interfaz.repintar();
 	     
   }
@@ -91,7 +89,11 @@ public class Juego {
   }
   
   public void solicitarEnemigo(){
-	  factoryenemies.crearEnemigo().getIA().iniciar();
+	 Enemigo en=factoryenemies.crearEnemigo(); 
+	 interfaz.agregarAPanel(en.obtenerGrafico().getJLabel());
+	 IA intelig= new IA(en,this);
+	 en.setIA(intelig);
+	 en.getIA().iniciar();
   }
   
   public void eliminarEnemigo(Enemigo g){

@@ -96,13 +96,12 @@ public class FabEnemigos implements Runnable {
 	case 0: e= new TanqueBasico(posiciones[posicion].getX(),posiciones[posicion].getY(),game); break;
 	case 1: e= new TanqueRapido(posiciones[posicion].getX(),posiciones[posicion].getY(),game); break;
 	case 2: e= new TanqueDePoder(posiciones[posicion].getX(),posiciones[posicion].getY(),game); break;
-	case 3: e= new TanqueBlindado(posiciones[posicion].getX(),posiciones[posicion].getY(),game);
+	case 3: e= new TanqueBlindado(posiciones[posicion].getX(),posiciones[posicion].getY(),game);break;
 	}
 	
 	map.agregarEnemigo(e);
-	game.getInterfaz().agregarAPanel(e.obtenerGrafico().getJLabel());
-	Intelig= new IA(e,game);
-	e.setIA(Intelig);
+	
+	
 	return e;
 	 }
 	 return null;
