@@ -5,19 +5,21 @@ import javax.swing.ImageIcon;
 import Interfaz.GUI;
 import Logica.Juego;
 import Modulos.ElementoGrafico;
+import Musica.Clock;
 
 public class TimerPW extends PowerUp{
 
 	public TimerPW(int x, int y, Juego g) {
 		super(x, y, g);
 		graf= new ElementoGrafico(x,y,39,39);
-		graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/powerupdeprueba.png")));
+		graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/Timer.png")));
 		graf.setImage(0);
 		graf.setVisible(true);
 	}
 
 	@Override
 	public void activar() {
+		Clock reloj = new Clock(game.getInterfaz());
 		graf.setVisible(false);
 		game.getInterfaz().getPanelGeneral().remove(graf.getJLabel());
 		game.sumarPuntaje(400);

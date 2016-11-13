@@ -17,10 +17,10 @@ public class TanqueBlindado extends Enemigo {
 		
 		
 	 graf=new ElementoGrafico(x,y,40,40);
-	 graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/blidadoIzq.png")));
-	 graf.addImage(1, new ImageIcon(GUI.class.getResource("/Graficos/blindadoDer.png")));
-	 graf.addImage(2, new ImageIcon(GUI.class.getResource("/Graficos/blindadoAbajo.png")));
-	 graf.addImage(3, new ImageIcon(GUI.class.getResource("/Graficos/blindadoArriba.png")));
+	 graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/E4_LEFT.gif")));
+	 graf.addImage(1, new ImageIcon(GUI.class.getResource("/Graficos/E4_RIGHT.gif")));
+	 graf.addImage(2, new ImageIcon(GUI.class.getResource("/Graficos/E4_DOWN.gif")));
+	 graf.addImage(3, new ImageIcon(GUI.class.getResource("/Graficos/E4_UP.gif")));
 	 graf.setImage(3);
 	 graf.setVisible(true);
 		

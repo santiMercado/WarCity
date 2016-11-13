@@ -6,6 +6,7 @@ import Interfaz.GUI;
 import Logica.Juego;
 import Modulos.ElementoGrafico;
 import Modulos.GameObject;
+import Musica.Disparo;
 import Obstaculos.Obstaculo;
 
 public class Shot extends GameObject implements Runnable {
@@ -20,13 +21,13 @@ public class Shot extends GameObject implements Runnable {
 		this.t=t;
 		hilo= new Thread(this,"shot");
 		graf=new ElementoGrafico(x,y,10,10);
-		graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/balasimple.png")));
-		graf.addImage(1, new ImageIcon(GUI.class.getResource("/Graficos/balasimple.png")));
-		graf.addImage(2, new ImageIcon(GUI.class.getResource("/Graficos/balasimple.png")));
-		graf.addImage(3, new ImageIcon(GUI.class.getResource("/Graficos/balasimple.png")));
+		graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/fuegoizq.gif")));
+		graf.addImage(1, new ImageIcon(GUI.class.getResource("/Graficos/fuegoder.gif")));
+		graf.addImage(2, new ImageIcon(GUI.class.getResource("/Graficos/fuegoab.gif")));
+		graf.addImage(3, new ImageIcon(GUI.class.getResource("/Graficos/fuegoarr.gif")));
 		direccion=t.getDir();
 		velocidad=t.getVelocidadD();
-
+		
 		graf.setImage(direccion);
 		graf.setVisible(true);
 	}

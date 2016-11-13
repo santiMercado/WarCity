@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 import Interfaz.GUI;
 import Logica.Juego;
 import Modulos.ElementoGrafico;
+import Musica.Explosion;
 import Tanque.Shot;
 import Tanque.ShotJugadorX;
 
@@ -27,6 +28,7 @@ public class Ladrillo extends Obstaculo {
 		resistencia--;
 		if(resistencia==0){
 			colision=false;
+			Explosion exp = new Explosion();
 			game.eliminarObstaculo(this);
 		}
 			
@@ -40,6 +42,7 @@ public class Ladrillo extends Obstaculo {
 		 
 		if(resistencia==0){
 			colision=false;
+			Explosion exp = new Explosion();
 			game.eliminarObstaculo(this);
 		}
 		

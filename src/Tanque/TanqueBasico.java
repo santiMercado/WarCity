@@ -20,10 +20,10 @@ public class TanqueBasico extends Enemigo {
 		
 		
 		graf=new ElementoGrafico(x,y,40,40);
-		 graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/basicoLEFT.png")));
-		 graf.addImage(1, new ImageIcon(GUI.class.getResource("/Graficos/basicoRIGHT.png")));
-		 graf.addImage(2, new ImageIcon(GUI.class.getResource("/Graficos/basicoDOWN.png")));
-		 graf.addImage(3, new ImageIcon(GUI.class.getResource("/Graficos/basicoUP.png")));
+		 graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/E1_LEFT.gif")));
+		 graf.addImage(1, new ImageIcon(GUI.class.getResource("/Graficos/E1_RIGHT.gif")));
+		 graf.addImage(2, new ImageIcon(GUI.class.getResource("/Graficos/E1_DOWN.gif")));
+		 graf.addImage(3, new ImageIcon(GUI.class.getResource("/Graficos/E1_UP.gif")));
 		 graf.setImage(3);
 		 graf.setVisible(true);
 		// TODO Auto-generated constructor stub

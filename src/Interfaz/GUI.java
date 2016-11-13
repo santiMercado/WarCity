@@ -1,14 +1,20 @@
 package Interfaz;
 
 import Logica.Juego;
+import Musica.Musica;
+import Musica.VidaExtra;
 import Obstaculos.Acero;
 import Obstaculos.Agua;
 import Obstaculos.Aguila;
+import Obstaculos.Casco;
+import Obstaculos.Estrella;
+import Obstaculos.Granada;
 import Obstaculos.Ladrillo;
+import Obstaculos.LifeUp;
 import Obstaculos.Obstaculo;
+import Obstaculos.Pala;
 import Obstaculos.Selva;
-
-
+import Obstaculos.TimerPW;
 
 import java.awt.event.KeyListener;
 import java.awt.Color;
@@ -70,7 +76,7 @@ public class GUI extends JFrame implements KeyListener {
 	private Juego game;
 	private JLabel aux;
 	protected JLabel gover;
-   
+	protected Musica music;
 	
 
 	boolean esta=false;
@@ -221,7 +227,8 @@ public class GUI extends JFrame implements KeyListener {
 		catch(IOException e) {
 			System.out.println("IO Exception");
 		}
-
+		
+		music = new Musica();
 
 	}
 
@@ -264,6 +271,13 @@ public class GUI extends JFrame implements KeyListener {
 
 
 			game.getJugador().disparar();
+			break;
+		}  
+		case KeyEvent.VK_C:
+		{
+
+			LifeUp p = new LifeUp(300, 500, game);
+			game.agregarPowerUp(p);;
 			break;
 		}   
 		
@@ -344,7 +358,11 @@ public class GUI extends JFrame implements KeyListener {
 
 		repintar();
 	}
-
+	
+	public Musica getMusic() {
+		return music;
+	}
+	
 	public synchronized void repintar(){
 		repaint();
 	}

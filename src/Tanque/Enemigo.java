@@ -2,6 +2,7 @@ package Tanque;
 
 import Logica.Juego;
 import Modulos.IA;
+import Musica.Muerte;
 
 public abstract class Enemigo extends Tanque {
    protected int puntos;
@@ -25,7 +26,7 @@ public abstract class Enemigo extends Tanque {
 		 resistencia--;
 		 if(resistencia==0)
 			{
-			 
+			 Muerte dead = new Muerte();
 			 game.eliminarEnemigo(this);
 			}
 		 return true;

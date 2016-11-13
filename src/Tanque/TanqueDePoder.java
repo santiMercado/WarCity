@@ -16,10 +16,10 @@ public class TanqueDePoder extends Enemigo {
 		velocidadd=3*5;
 		
 		graf=new ElementoGrafico(x,y,40,40);
-		 graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/poderIzq.png")));
-		 graf.addImage(1, new ImageIcon(GUI.class.getResource("/Graficos/poderDer.png")));
-		 graf.addImage(2, new ImageIcon(GUI.class.getResource("/Graficos/poderAbajo.png")));
-		 graf.addImage(3, new ImageIcon(GUI.class.getResource("/Graficos/poderArriba.png")));
+		 graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/E2_LEFT.gif")));
+		 graf.addImage(1, new ImageIcon(GUI.class.getResource("/Graficos/E2_RIGHT.gif")));
+		 graf.addImage(2, new ImageIcon(GUI.class.getResource("/Graficos/E2_DOWN.gif")));
+		 graf.addImage(3, new ImageIcon(GUI.class.getResource("/Graficos/E2_UP.gif")));
 		 graf.setImage(3);
 		 graf.setVisible(true);
     }

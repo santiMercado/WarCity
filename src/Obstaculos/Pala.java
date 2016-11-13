@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 import Interfaz.GUI;
 import Logica.Juego;
 import Modulos.ElementoGrafico;
+import Musica.SonidoAcero;
 import Obstaculos.Acero;
 import Obstaculos.Ladrillo;
 import Obstaculos.PowerUp;
@@ -16,7 +17,7 @@ public class Pala extends PowerUp implements Runnable{
 		super(x, y, g);
 		hilo=new Thread(this);
 		graf= new ElementoGrafico(x,y,39,39);
-		graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/powerupdeprueba.png")));
+		graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/Pala.png")));
 		graf.setImage(0);
 		graf.setVisible(true);
 		// TODO Auto-generated constructor stub
@@ -24,7 +25,7 @@ public class Pala extends PowerUp implements Runnable{
 
 	@Override
 	public void activar() {
-		
+		SonidoAcero ac = new SonidoAcero();
 		graf.setVisible(false);
 		game.getInterfaz().getPanelGeneral().remove(graf.getJLabel());
 		game.sumarPuntaje(400);

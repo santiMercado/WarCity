@@ -17,10 +17,10 @@ public class TanqueRapido extends Enemigo{
 		// TODO Auto-generated constructor stub
 		
 		graf=new ElementoGrafico(x,y,40,40);
-		 graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/rapidoIzq.png")));
-		 graf.addImage(1, new ImageIcon(GUI.class.getResource("/Graficos/rapidoDer.png")));
-		 graf.addImage(2, new ImageIcon(GUI.class.getResource("/Graficos/rapidoAbajo.png")));
-		 graf.addImage(3, new ImageIcon(GUI.class.getResource("/Graficos/rapidoArriba.png")));
+		 graf.addImage(0, new ImageIcon(GUI.class.getResource("/Graficos/E3_LEFT.gif")));
+		 graf.addImage(1, new ImageIcon(GUI.class.getResource("/Graficos/E3_RIGHT.gif")));
+		 graf.addImage(2, new ImageIcon(GUI.class.getResource("/Graficos/E3_DOWN.gif")));
+		 graf.addImage(3, new ImageIcon(GUI.class.getResource("/Graficos/E3_UP.gif")));
 		 graf.setImage(3);
 		 graf.setVisible(true);
    }
