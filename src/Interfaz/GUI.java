@@ -315,7 +315,6 @@ public class GUI extends JFrame implements KeyListener {
 			break;
 		case KeyEvent.VK_RIGHT:
 			game.getJugador().obtenerGrafico().setImage(5);
-
 		}
 	}
 
@@ -353,6 +352,7 @@ public class GUI extends JFrame implements KeyListener {
 		gover.setForeground(Color.red);
 		gover.setText("GAME OVER");*/
 		gover.setVisible(true);
+		music.stop();
 
 		//panelGeneral.add(gover);
 
